@@ -1,3 +1,3 @@
-##BAYMAX BOT - A whatsapp group management bot
+## BAYMAX BOT - A whatsapp group management bot
 
-Bot to manage your group and to make admins tasks easy.
+`Bot to manage your group and to make admins tasks easy.`
