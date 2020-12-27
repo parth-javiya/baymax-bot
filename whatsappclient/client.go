@@ -77,7 +77,6 @@ func loginToWhatsapp(wac *whatsapp.Conn) error {
 	if err == nil {
 		//restore session
 		session, err = wac.RestoreWithSession(session)
-		fmt.Println("restored")
 		if err != nil {
 			return fmt.Errorf("restoring failed: %v", err)
 		}
@@ -85,19 +84,13 @@ func loginToWhatsapp(wac *whatsapp.Conn) error {
 		//no saved session -> regular login
 		qrChan := make(chan string)
 		go func() {
-			data := <-qrChan
-			fmt.Printf("qr code: %v\n", data)
-			err := qrcode.WriteFile(data, qrcode.Medium, 256, "qr.png")
+			err := qrcode.WriteFile(<-qrChan, qrcode.Medium, 256, "qr.png")
 			if err != nil {
 				fmt.Println(err)
 			}
 			//show qr code or save it somewhere to scan
 		}()
-		session, err := wac.Login(qrChan)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(session)
+		session, err = wac.Login(qrChan)
 		if err != nil {
 			return fmt.Errorf("error during login: %v", err)
 		}
