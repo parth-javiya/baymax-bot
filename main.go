@@ -5,11 +5,11 @@ import (
 )
 
 func main() {
-	client := client.NewClient()
+	newClient := client.NewClient()
 
-	client.Listen(func(msg client.Message) {
+	newClient.Listen(func(msg client.Message) {
 		if msg.Text == "Hi" {
-			client.SendText(msg.From, "Hello from *github*!")
+			newClient.SendText(msg.From, "Hello from *github*!")
 		}
 	})
 }

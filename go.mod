@@ -1,4 +1,4 @@
-module main
+module github.com/parth-javiya/baymax-bot
 
 go 1.15
 
